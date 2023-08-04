@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <textarea>
+    </textarea>
+<button> send messege</button>
+    <div class="div" >online users are <span id="spam"> </span></div>
+
+<div id="msg">
+  <div class="msgin">
+    
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js" integrity="sha512-Z6C1p1NIexPj5MsVUunW4pg7uMX6/TT3CUVldmjXx2kpip1eZcrAnxIusDxyFIikyM9A61zOVNgvLr/TGudOQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+
+
+      var socket = io();
+      var textarea = document.querySelector("textarea");
+      var button = document.querySelector("button");
+  
+      button.addEventListener("click",function(){
+        socket.emit("msg", textarea.value);
+      })
+
+      socket.on("msg" ,function(data){
+        document.querySelector("#msg").innerHTML +=
+        `<div class="msgin">
+    ${data}
+  </div>`
+  
+      })
+      socket.on("allusers" ,function(data){
+        document.querySelector("#spam").innerHTML +=
+        `${allUsers}`
+      })
+      
+
+
+
+
+  </script>
+</body>
+</html>
+  </body>
+</html>
